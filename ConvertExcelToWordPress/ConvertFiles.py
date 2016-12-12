@@ -93,8 +93,10 @@ if __name__ == "__main__":
             newFileName = "Another1"
             print(FileAsText)
             RemoveFileAndCreateNewZip(fileDir + TemplateName, ['content.xml'], fileDir+"/ConvertedFiles/", "Another1")
-            OurNewZip = zipfile.ZipFile(ConvertedDir + newFileName + ".odt", "a")
-            OurNewZip.writestr("content.xml", FileAsText)
+            #OurNewZip = zipfile.ZipFile(ConvertedDir + newFileName + ".odt", "a")
+            #OurNewZip.writestr("content.xml", AsAByteString)
+            with zipfile.ZipFile(ConvertedDir + newFileName + ".odt", mode='a', compression=zipfile.ZIP_DEFLATED) as zf:
+                zf.writestr(filename, FileAsText)
 
 
         #Grab ODT File.
